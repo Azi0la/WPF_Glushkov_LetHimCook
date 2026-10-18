@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище LetHimCookModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище LHCModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BlogPosts">
           <Key>
             <PropertyRef Name="ID" />
@@ -645,7 +645,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище LetHimCookModelContainer">
+        <EntityContainer Name="Хранилище LHCModelContainer">
           <EntitySet Name="BlogPosts" EntityType="Self.BlogPosts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CollectionRecipe" EntityType="Self.CollectionRecipe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Collections" EntityType="Self.Collections" Schema="dbo" store:Type="Tables" />
@@ -818,7 +818,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LetHimCookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LHCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BlogPosts">
           <Key>
             <PropertyRef Name="ID" />
@@ -1533,7 +1533,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LetHimCookEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LHCEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BlogPosts" EntityType="Self.BlogPosts" />
           <EntitySet Name="CollectionRecipe" EntityType="Self.CollectionRecipe" />
           <EntitySet Name="Collections" EntityType="Self.Collections" />
@@ -1707,9 +1707,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище LetHimCookModelContainer" CdmEntityContainer="LetHimCookEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LHCModelContainer" CdmEntityContainer="LHCEntities1">
           <EntitySetMapping Name="BlogPosts">
-            <EntityTypeMapping TypeName="LetHimCookModel.BlogPosts">
+            <EntityTypeMapping TypeName="LHCModel.BlogPosts">
               <MappingFragment StoreEntitySet="BlogPosts">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
@@ -1725,7 +1725,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CollectionRecipe">
-            <EntityTypeMapping TypeName="LetHimCookModel.CollectionRecipe">
+            <EntityTypeMapping TypeName="LHCModel.CollectionRecipe">
               <MappingFragment StoreEntitySet="CollectionRecipe">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CollectionID" ColumnName="CollectionID" />
@@ -1734,7 +1734,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Collections">
-            <EntityTypeMapping TypeName="LetHimCookModel.Collections">
+            <EntityTypeMapping TypeName="LHCModel.Collections">
               <MappingFragment StoreEntitySet="Collections">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
@@ -1749,7 +1749,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="LetHimCookModel.Comments">
+            <EntityTypeMapping TypeName="LHCModel.Comments">
               <MappingFragment StoreEntitySet="Comments">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -1764,7 +1764,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Difficulties">
-            <EntityTypeMapping TypeName="LetHimCookModel.Difficulties">
+            <EntityTypeMapping TypeName="LHCModel.Difficulties">
               <MappingFragment StoreEntitySet="Difficulties">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1772,7 +1772,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Favorites">
-            <EntityTypeMapping TypeName="LetHimCookModel.Favorites">
+            <EntityTypeMapping TypeName="LHCModel.Favorites">
               <MappingFragment StoreEntitySet="Favorites">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -1781,7 +1781,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Follows">
-            <EntityTypeMapping TypeName="LetHimCookModel.Follows">
+            <EntityTypeMapping TypeName="LHCModel.Follows">
               <MappingFragment StoreEntitySet="Follows">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FollowerID" ColumnName="FollowerID" />
@@ -1791,7 +1791,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IngRec">
-            <EntityTypeMapping TypeName="LetHimCookModel.IngRec">
+            <EntityTypeMapping TypeName="LHCModel.IngRec">
               <MappingFragment StoreEntitySet="IngRec">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="RecipeID" ColumnName="RecipeID" />
@@ -1800,7 +1800,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ingridients">
-            <EntityTypeMapping TypeName="LetHimCookModel.Ingridients">
+            <EntityTypeMapping TypeName="LHCModel.Ingridients">
               <MappingFragment StoreEntitySet="Ingridients">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1808,7 +1808,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Likes">
-            <EntityTypeMapping TypeName="LetHimCookModel.Likes">
+            <EntityTypeMapping TypeName="LHCModel.Likes">
               <MappingFragment StoreEntitySet="Likes">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -1821,7 +1821,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Recipes">
-            <EntityTypeMapping TypeName="LetHimCookModel.Recipes">
+            <EntityTypeMapping TypeName="LHCModel.Recipes">
               <MappingFragment StoreEntitySet="Recipes">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
@@ -1839,7 +1839,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RecipeTags">
-            <EntityTypeMapping TypeName="LetHimCookModel.RecipeTags">
+            <EntityTypeMapping TypeName="LHCModel.RecipeTags">
               <MappingFragment StoreEntitySet="RecipeTags">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TagID" ColumnName="TagID" />
@@ -1851,7 +1851,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reports">
-            <EntityTypeMapping TypeName="LetHimCookModel.Reports">
+            <EntityTypeMapping TypeName="LHCModel.Reports">
               <MappingFragment StoreEntitySet="Reports">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -1867,7 +1867,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="LetHimCookModel.Roles">
+            <EntityTypeMapping TypeName="LHCModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1875,7 +1875,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="LetHimCookModel.Status">
+            <EntityTypeMapping TypeName="LHCModel.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1883,7 +1883,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="LetHimCookModel.sysdiagrams">
+            <EntityTypeMapping TypeName="LHCModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1894,7 +1894,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="LetHimCookModel.Tags">
+            <EntityTypeMapping TypeName="LHCModel.Tags">
               <MappingFragment StoreEntitySet="Tags">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1902,7 +1902,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Types">
-            <EntityTypeMapping TypeName="LetHimCookModel.Types">
+            <EntityTypeMapping TypeName="LHCModel.Types">
               <MappingFragment StoreEntitySet="Types">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1910,7 +1910,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="LetHimCookModel.Users">
+            <EntityTypeMapping TypeName="LHCModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1939,7 +1939,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>

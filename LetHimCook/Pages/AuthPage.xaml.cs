@@ -20,9 +20,13 @@ namespace LetHimCook.Pages
     /// </summary>
     public partial class AuthPage : Page
     {
+        private int FailAttempts = 0;
+        private Random random = new Random();
+
         public AuthPage()
         {
             InitializeComponent();
+            
         }
 
         private void ForgotButt_Click(object sender, RoutedEventArgs e)
@@ -31,6 +35,16 @@ namespace LetHimCook.Pages
         }
 
         private void AuthButt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CaptchaBTN_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ForgotPassButt_Click(object sender, RoutedEventArgs e)
         {
 
         }

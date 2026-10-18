@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,19 +21,93 @@ namespace LetHimCook.Pages
     /// </summary>
     public partial class RegPage : Page
     {
+        private static readonly Regex PassRegex = new Regex(
+        @"^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^*]{8,}$",
+        RegexOptions.Compiled);
+
         public RegPage()
         {
             InitializeComponent();
-        }
-
-        private void RememberButt_Click(object sender, RoutedEventArgs e)
-        {
+            
 
         }
+
+
+        
 
         private void RegButt_Click(object sender, RoutedEventArgs e)
         {
+            string Name = LoginTB.Text.Trim();
+            string Pass = PassMaker.GetHash(PassTB.Password);
+            string PassDub = PassMaker.GetHash(PassDubTB.Password);
 
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(PassTB.Password) || string.IsNullOrEmpty(PassDubTB.Password)) 
+            {
+                MessageBox.Show("Заполните все поля!");
+                return;
+            }
+            
+            if (Pass != PassDub) 
+            {
+                MessageBox.Show("Пароли не совпадают!");
+                return;
+            }
+            if (PassRegex.IsMatch(PassTB.Password))
+            {
+                //Прописать регистрацию
+                MessageBox.Show("Сщщд");
+            }
+            else
+            {
+                MessageBox.Show("Ваш пароль должен быть не менее 8 символов, а также иметь как минимум: \n 1 строчную латинскую букву \n 1 заглавную латинскую букву \n 1 цифру \n 1 спецсимвол из списка (!@#$%^&*)");
+            }
+
+        }
+
+
+        private void LoginTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LoginPlaceholder.Visibility = string.IsNullOrEmpty(LoginTB.Text) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void PassTB_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PassPlaceholder.Visibility = string.IsNullOrEmpty(PassTB.Password) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void PassDubTB_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PassDubPlaceholder.Visibility = string.IsNullOrEmpty(PassDubTB.Password) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void LoginTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            LoginPlaceholder.Visibility = Visibility.Collapsed;
+        }
+
+        private void LoginTB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(string.IsNullOrEmpty(LoginTB.Text)) LoginPlaceholder.Visibility = Visibility.Visible;
+        }
+
+        private void PassTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PassPlaceholder.Visibility = Visibility.Collapsed;
+        }
+
+        private void PassTB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(PassTB.Password)) PassPlaceholder.Visibility = Visibility.Visible;
+        }
+
+        private void PassDubTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PassDubPlaceholder.Visibility = Visibility.Collapsed;
+        }
+
+        private void PassDubTB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(PassDubTB.Password)) PassDubPlaceholder.Visibility = Visibility.Visible;
         }
     }
 }

@@ -25,15 +25,56 @@
             Text="Регистрация" FontSize="24" Margin="0,0,0,15"/>
                 <WrapPanel HorizontalAlignment="Center">
                     <TextBlock Text="Логин:" FontSize="18"/>
-                    <TextBox x:Name="LoginTB" Width="225" Height="30"/>
+                    <Grid>
+                        <TextBox x:Name="LoginTB" Width="225" Height="30" 
+                                 ToolTip="Введите логин" 
+                                 TextChanged="LoginTB_TextChanged"
+                                 GotFocus="LoginTB_GotFocus"
+                                 LostFocus="LoginTB_LostFocus"/>
+                        <TextBlock x:Name="LoginPlaceholder"
+                            Text="Введите логин"
+                            Foreground="Gray"
+                            VerticalAlignment="Center"
+                            Margin="15,0,0,0"
+                            IsHitTestVisible="False"
+                            Visibility="Visible"/>
+                    </Grid>
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center">
                     <TextBlock Text="Пароль:" FontSize="18"/>
-                    <PasswordBox x:Name="PassTB" Width="225" Height="30"/>
+                    <Grid>
+                        <PasswordBox x:Name="PassTB" Width="225" Height="30" 
+                                     ToolTip="Мин. 8 симв., A-z, 0-9, !@#$%^*" 
+                                     PasswordChanged="PassTB_PasswordChanged"
+                                     GotFocus="PassTB_GotFocus"
+                                     LostFocus="PassTB_LostFocus"/>
+                        <TextBlock x:Name="PassPlaceholder"
+                            Text="Мин. 8 симв., A-z, 0-9, !@#$%^*"
+                            Foreground="Gray"
+                            FontSize="12"
+                            VerticalAlignment="Center"
+                            Margin="15,0,0,0"
+                            Visibility="Visible"
+                            IsHitTestVisible="False"
+                            TextWrapping="Wrap"/>
+                    </Grid>
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center">
                     <TextBlock Text="Повтор пароля:" FontSize="18"/>
-                    <PasswordBox x:Name="PassDubTB" Width="225" Height="30"/>
+                    <Grid>
+                        <PasswordBox x:Name="PassDubTB" Width="225" Height="30" 
+                                     ToolTip="Мин. 8 симв., A-z, 0-9, !@#$%^*" 
+                                     PasswordChanged="PassDubTB_PasswordChanged"
+                                     GotFocus="PassDubTB_GotFocus"
+                                     LostFocus="PassDubTB_LostFocus"/>
+                        <TextBlock x:Name="PassDubPlaceholder"
+                        Text="Повторите пароль"
+                        Foreground="Gray"
+                        VerticalAlignment="Center"
+                        Margin="15,0,0,0"
+                        IsHitTestVisible="False"
+                        Visibility="Visible"/>
+                    </Grid>
                 </WrapPanel>
                 <Button x:Name="RegButt" Width="110" Height="40" Content="Регистрация" Margin="10" Click="RegButt_Click"/>
             </StackPanel>

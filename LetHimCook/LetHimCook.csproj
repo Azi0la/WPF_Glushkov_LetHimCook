@@ -35,14 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\..\ConsoleApp2\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\..\..\ConsoleApp2\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -64,69 +66,81 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BlogPosts.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="CollectionRecipe.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Collections.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Comments.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Core.cs" />
     <Compile Include="Difficulties.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Favorites.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Follows.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="IngRec.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Ingridients.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
-    <Compile Include="LHCdb.cs">
+    <Compile Include="lhc.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lhc.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lhc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lhc.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lhc.edmx</DependentUpon>
     </Compile>
     <Compile Include="Likes.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\RegPage.xaml.cs">
       <DependentUpon>RegPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PassMaker.cs" />
     <Compile Include="Recipes.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="RecipeTags.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Reports.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Roles.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Status.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Tags.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Types.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
-      <DependentUpon>LHCdb.tt</DependentUpon>
+      <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
     <Page Include="Pages\RegPage.xaml">
       <SubType>Designer</SubType>
@@ -147,16 +161,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LHCdb.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LHCdb.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LHCdb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LHCdb.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -209,12 +213,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="LHCdb.edmx">
+    <EntityDeploy Include="lhc.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LHCdb.Designer.cs</LastGenOutput>
+      <LastGenOutput>lhc.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="LHCdb.edmx.diagram">
-      <DependentUpon>LHCdb.edmx</DependentUpon>
+    <None Include="lhc.edmx.diagram">
+      <DependentUpon>lhc.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -240,16 +244,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LHCdb.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LHCdb.Context.cs</LastGenOutput>
-      <DependentUpon>LHCdb.edmx</DependentUpon>
-    </Content>
-    <Content Include="LHCdb.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LHCdb.edmx</DependentUpon>
-      <LastGenOutput>LHCdb.cs</LastGenOutput>
-    </Content>
     <Resource Include="res\notcatt.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -274,6 +268,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lhc.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>lhc.edmx</DependentUpon>
+      <LastGenOutput>lhc.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="lhc.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>lhc.edmx</DependentUpon>
+      <LastGenOutput>lhc.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
