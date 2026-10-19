@@ -24,29 +24,72 @@
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                     Text="Авторизация" FontSize="24" Margin="0,0,0,0"
                            />
-                <WrapPanel x:Name="LoginGrid" HorizontalAlignment="Center" Visibility="Collapsed">
-                    <TextBlock Text="Логин:" FontSize="18"/>
-                    <TextBox x:Name="LoginTB" Width="225" Height="30" ToolTip="Введите логин"/>
+                <WrapPanel x:Name="LoginGrid" HorizontalAlignment="Center" Visibility="Visible">
+                    <TextBlock Text="Логин:" FontSize="16"/>
+                <Grid>
+                    <TextBox x:Name="LoginTB" Width="225" Height="25" 
+                             ToolTip="Введите логин"
+                             TextChanged="LoginTB_TextChanged"
+                             GotFocus="LoginTB_GotFocus"
+                             LostFocus="LoginTB_LostFocus"/>
+                    <TextBlock x:Name="LoginPlaceholder"
+                            Text="Введите логин"
+                            Foreground="Gray"
+                            VerticalAlignment="Center"
+                            Margin="15,0,0,0"
+                            IsHitTestVisible="False"
+                            Visibility="Visible"/>
+                </Grid>
                 </WrapPanel>
-                <WrapPanel x:Name="PassGrid" HorizontalAlignment="Center" Visibility="Collapsed">
-                    <TextBlock Text="Пароль:" FontSize="18"/>
-                    <PasswordBox x:Name="PassTB" Width="225" Height="30" ToolTip="Введите пароль"/>
+                
+                <WrapPanel x:Name="PassGrid" HorizontalAlignment="Center" Visibility="Visible">
+                    <TextBlock Text="Пароль:" FontSize="16"/>
+                    <Grid>
+                        <PasswordBox x:Name="PassTB" Width="225" Height="25"
+                                     ToolTip="Введите пароль"
+                                     PasswordChanged="PassTB_PasswordChanged"
+                                     GotFocus="PassTB_GotFocus"
+                                     LostFocus="PassTB_LostFocus"/>
+                        <TextBlock x:Name="PassPlaceholder"
+                                    Text="Введите пароль"
+                                    Foreground="Gray"
+                                    VerticalAlignment="Center"
+                                    Margin="15,0,0,0"
+                                    IsHitTestVisible="False"
+                                    Visibility="Visible"/>
+                    </Grid>
                 </WrapPanel>
-                <StackPanel x:Name="CaptchaGrid" Visibility="Visible">
+                
+                
+                <StackPanel x:Name="CaptchaGrid" Visibility="Collapsed">
                     <TextBlock Text="Подтвердите что вы человек" FontSize="16" HorizontalAlignment="Center" />
                     <TextBox Visibility="Visible" x:Name="Captcha"
                     Height="42" Width="156" TextAlignment="Center"
                     FontStretch="UltraCondensed" IsReadOnly="True" FontSize="20">
                     </TextBox>
+                    <Grid>
                     <TextBox x:Name="CaptchaInput" Visibility="Visible" 
                              Height="34" Width="160"
-                             Text="" TextWrapping="Wrap" ToolTip="Введите показанные символы"/>
-                    <Button x:Name="CaptchaBTN" Content="Подтвердить" Height="40" Width="110" ToolTip="Проверить введенные символы" Click="CaptchaBTN_Click"/>
+                             Text="" TextWrapping="Wrap" 
+                             ToolTip="Введите показанные символы"
+                             TextChanged="CaptchaInput_TextChanged"
+                             GotFocus="CaptchaInput_GotFocus"
+                             LostFocus="CaptchaInput_LostFocus"/>
+                    <TextBlock x:Name="CaptchaPlaceholder"
+                            Text="Введите текст свыше"
+                            Foreground="Gray"
+                            VerticalAlignment="Center"
+                            Margin="60,0,0,0"
+                            IsHitTestVisible="False"
+                            Visibility="Visible"/>
+                    </Grid>
+                    <Button x:Name="CaptchaBTN" Content="Подтвердить" Height="40" Width="110" 
+                            ToolTip="Проверить введенные символы" 
+                            Click="CaptchaBTN_Click"/>
                 </StackPanel>
                 
-                <Button x:Name="AuthButt" Width="110" Height="40" Content="Войти" Margin="5" Click="AuthButt_Click"/>
+                <Button x:Name="AuthButt" Width="110" Height="40" Content="Войти" Margin="5" Click="AuthButt_Click" IsEnabled="True"/>
                 <Button x:Name="ForgotButt" Width="115" Height="20" Content="Нет аккаунта?" Background="Transparent" Click="ForgotButt_Click"/>
-                <Button x:Name="ForgotPassButt" Width="150" Height="20" Content="Забыли пароль?" Background="Transparent" Click="ForgotPassButt_Click"/>
             </StackPanel>
         </Border>
     </Grid>

@@ -24,6 +24,8 @@ namespace LetHimCook.Pages
         private static readonly Regex PassRegex = new Regex(
         @"^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^*]{8,}$",
         RegexOptions.Compiled);
+        private List<Users> users = Core.Context.Users.ToList();
+
 
         public RegPage()
         {
@@ -38,10 +40,11 @@ namespace LetHimCook.Pages
         private void RegButt_Click(object sender, RoutedEventArgs e)
         {
             string Name = LoginTB.Text.Trim();
+            string Email = EmailTB.Text.Trim();
             string Pass = PassMaker.GetHash(PassTB.Password);
             string PassDub = PassMaker.GetHash(PassDubTB.Password);
 
-            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(PassTB.Password) || string.IsNullOrEmpty(PassDubTB.Password)) 
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(EmailTB.Text) || string.IsNullOrEmpty(PassTB.Password) || string.IsNullOrEmpty(PassDubTB.Password)) 
             {
                 MessageBox.Show("Заполните все поля!");
                 return;
@@ -54,8 +57,25 @@ namespace LetHimCook.Pages
             }
             if (PassRegex.IsMatch(PassTB.Password))
             {
-                //Прописать регистрацию
-                MessageBox.Show("Сщщд");
+                if(Core.Context.Users.Any(p => p.Name == Name))
+                {
+                    MessageBox.Show("Пользователь с таким логином уже существует!");
+                    return;
+                }
+                Core.user = new Users
+                {
+                    Name = Name,
+                    Email = Email,
+                    Password = Pass,
+                    AvatarUrl = null,
+                    Bio = "",
+                    RoleID = 1,
+                    CreatedAt = DateTime.Now
+                };
+                Core.Context.Users.Add(Core.user);
+                Core.Context.SaveChanges();
+                MessageBox.Show("Регистрация завершена!");
+                NavigationService.Navigate(new MainPage());
             }
             else
             {
@@ -108,6 +128,21 @@ namespace LetHimCook.Pages
         private void PassDubTB_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(PassDubTB.Password)) PassDubPlaceholder.Visibility = Visibility.Visible;
+        }
+
+        private void EmailTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EmailPlaceholder.Visibility = string.IsNullOrEmpty(EmailTB.Text) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void EmailTB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            EmailPlaceholder.Visibility = Visibility.Collapsed;
+        }
+
+        private void EmailTB_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(EmailTB.Text)) LoginPlaceholder.Visibility = Visibility.Visible;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace LetHimCook
     /// </summary>
     public partial class MainWindow : Window
     {
-        Users user;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -87,7 +87,7 @@ namespace LetHimCook
                                 MainFrame.Navigate(new Pages.CreatePage());
                                 break;
                             case "3":
-                                if(user == null) MainFrame.Navigate(new Pages.AuthPage());
+                                if(Core.user == null) MainFrame.Navigate(new Pages.AuthPage());
                                 else MainFrame.Navigate(new Pages.UserPage());
                                 break;
                         }

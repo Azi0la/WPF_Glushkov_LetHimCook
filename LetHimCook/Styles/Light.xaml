@@ -6,6 +6,7 @@
     <SolidColorBrush x:Key="TextBrush" Color="#193B57"/>
     <SolidColorBrush x:Key="InputBorderBrush" Color="#9197a3"/>
     <SolidColorBrush x:Key="AccentBrush" Color="#275e9f"/>
+    <SolidColorBrush x:Key="DarkBrush" Color="#4c92e6"/>
     <SolidColorBrush x:Key="ButtonTextBrush" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="SidePanelBrush" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="IconHoverBrush" Color="#4dc6c5"/>
@@ -47,13 +48,15 @@
                 <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"/>
             </Style>
         </Style.Resources>
+        
+        
 
         <Setter Property="Height" Value="35"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Padding" Value="10,0"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="Arial"/>
-        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource DarkBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextBrush}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
         <Setter Property="BorderThickness" Value="0"/>
