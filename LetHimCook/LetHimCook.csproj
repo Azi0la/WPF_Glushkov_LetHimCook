@@ -259,9 +259,6 @@
     <Resource Include="res\notcatt.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="res\catt.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="res\Dark-edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -282,6 +279,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\LHC.sql" />
     <Content Include="lhc.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>lhc.edmx</DependentUpon>
