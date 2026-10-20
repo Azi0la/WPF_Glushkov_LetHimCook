@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace LetHimCook
             InitializeComponent();
             MainFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             MainFrame.NavigationService.Navigate(new Pages.MainPage());
+
         }
 
         private bool IsDarkTheme = false;
@@ -43,6 +45,7 @@ namespace LetHimCook
                 SetImage(HomeImage, "home.png");
                 SetImage(EditImage, "edit.png");
                 SetImage(AccImage, "account.png");
+                //SetImage(ModImage, "admin.png");
                 SetImage(ThemeImage, "settings-sliders.png");
             }
             else { 
@@ -50,6 +53,7 @@ namespace LetHimCook
                 SetImage(HomeImage, "Dark-home.png");
                 SetImage(EditImage, "Dark-edit.png");
                 SetImage(AccImage, "Dark-user.png");
+                //SetImage(ModImage, "Dark-admin.png");
                 SetImage(ThemeImage, "Dark-settings-sliders.png");  // именно sliders (с s)
             }
 
@@ -84,11 +88,19 @@ namespace LetHimCook
                                 MainFrame.Navigate(new Pages.MainPage());
                                 break;
                             case "2":
-                                MainFrame.Navigate(new Pages.CreatePage());
+                                if (Core.user == null)
+                                {
+                                    MessageBox.Show("Войдите в аккаунт для возможности выкладывать рецепты");
+                                    MainFrame.Navigate(new Pages.AuthPage());
+                                }
+                                else MainFrame.Navigate(new Pages.CreatePage());
                                 break;
                             case "3":
                                 if(Core.user == null) MainFrame.Navigate(new Pages.AuthPage());
                                 else MainFrame.Navigate(new Pages.UserPage(Core.user));
+                                break;
+                            case "4":
+                                MainFrame.Navigate(new Pages.ModerationPage());
                                 break;
                         }
 
@@ -98,6 +110,11 @@ namespace LetHimCook
             }
         }
 
-        
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            e.Cancel = MessageBox.Show("Вы действительно хотите закрыть приложение?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes;
+        }
+
     }
 }

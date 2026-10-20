@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LetHimCook"
         mc:Ignorable="d"
-        Title="LetHimCook" Height="450" Width="800">
+        Title="LetHimCook" Height="450" Width="800"
+        Closing="Window_Closing">
 
     <Grid>
         <Frame x:Name="MainFrame"/>
@@ -40,7 +41,15 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <Button x:Name="ThemeButt" Style="{StaticResource IconButton}" Click="StyleButton_Click" Tag="4" Margin="0,10,0,10">
+                    <!--<Button x:Name="ModButt" Style="{StaticResource IconButton}" Click="MainButt_Click" Tag="4" Margin="0,10,0,10" Visibility="Collapsed">
+                        <Image x:Name="ModImage" Source="/res/Dark-admin.png"/>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                Модерация
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>-->
+                    <Button x:Name="ThemeButt" Style="{StaticResource IconButton}" Click="StyleButton_Click" Tag="5" Margin="0,10,0,10">
                         <Image x:Name="ThemeImage" Source="/res/Dark-settings-sliders.png"/>
                         <Button.ToolTip>
                             <ToolTip>

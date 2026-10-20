@@ -165,16 +165,6 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Tags">
           <Key>
             <PropertyRef Name="ID" />
@@ -662,7 +652,6 @@
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -833,12 +822,12 @@
           <Property Name="ViewsCount" Type="Int32" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_BlogPosts_Recipes" FromRole="BlogPosts" ToRole="Recipes" />
           <NavigationProperty Name="Users" Relationship="Self.FK_BlogPosts_Users" FromRole="BlogPosts" ToRole="Users" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_BlogPosts" FromRole="BlogPosts" ToRole="Comments" />
           <NavigationProperty Name="Likes" Relationship="Self.FK_Likes_BlogPosts" FromRole="BlogPosts" ToRole="Likes" />
           <NavigationProperty Name="RecipeTags" Relationship="Self.FK_RecipeTags_BlogPosts" FromRole="BlogPosts" ToRole="RecipeTags" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_BlogPosts" FromRole="BlogPosts" ToRole="Reports" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_BlogPosts_Recipes" FromRole="BlogPosts" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="CollectionRecipe">
           <Key>
@@ -849,7 +838,7 @@
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Collections" Relationship="Self.FK_CollectionRecipe_Collections" FromRole="CollectionRecipe" ToRole="Collections" />
           <NavigationProperty Name="Collections1" Relationship="Self.FK_CollectionRecipe_Collections1" FromRole="CollectionRecipe" ToRole="Collections" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_CollectionRecipe_Recipes" FromRole="CollectionRecipe" ToRole="Recipes" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_CollectionRecipe_Recipes" FromRole="CollectionRecipe" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="Collections">
           <Key>
@@ -889,10 +878,10 @@
           <NavigationProperty Name="Collections" Relationship="Self.FK_Comments_Collections" FromRole="Comments" ToRole="Collections" />
           <NavigationProperty Name="Comments1" Relationship="Self.FK_Comments_Comments" FromRole="Comments" ToRole="Comments1" />
           <NavigationProperty Name="Comments2" Relationship="Self.FK_Comments_Comments" FromRole="Comments1" ToRole="Comments" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Comments_Recipes" FromRole="Comments" ToRole="Recipes" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
           <NavigationProperty Name="Likes" Relationship="Self.FK_Likes_Comments" FromRole="Comments" ToRole="Likes" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Comments" FromRole="Comments" ToRole="Reports" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_Comments_Recipes" FromRole="Comments" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="Difficulties">
           <Key>
@@ -900,7 +889,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_Recipes_Difficulties" FromRole="Difficulties" ToRole="Recipes" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipes_Difficulties" FromRole="Difficulties" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="Favorites">
           <Key>
@@ -909,8 +898,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Favorites_Recipes" FromRole="Favorites" ToRole="Recipes" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Favorites_Users" FromRole="Favorites" ToRole="Users" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_Favorites_Recipes" FromRole="Favorites" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="Follows">
           <Key>
@@ -931,7 +920,7 @@
           <Property Name="RecipeID" Type="Int32" Nullable="false" />
           <Property Name="IngridientID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ingridients" Relationship="Self.FK_IngRec_Ingridients" FromRole="IngRec" ToRole="Ingridients" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_IngRec_Recipes" FromRole="IngRec" ToRole="Recipes" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_IngRec_Recipes" FromRole="IngRec" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="Ingridients">
           <Key>
@@ -955,8 +944,36 @@
           <NavigationProperty Name="BlogPosts" Relationship="Self.FK_Likes_BlogPosts" FromRole="Likes" ToRole="BlogPosts" />
           <NavigationProperty Name="Collections" Relationship="Self.FK_Likes_Collections" FromRole="Likes" ToRole="Collections" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Likes_Comments" FromRole="Likes" ToRole="Comments" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Likes_Recipes" FromRole="Likes" ToRole="Recipes" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Likes_Users" FromRole="Likes" ToRole="Users" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_Likes_Recipes" FromRole="Likes" ToRole="Recipes" />
+        </EntityType>
+        <EntityType Name="Recipes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Instruction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CookingTime" Type="Int32" />
+          <Property Name="Servings" Type="Int32" />
+          <Property Name="Rating" Type="Double" />
+          <Property Name="DifficultyID" Type="Int32" Nullable="false" />
+          <Property Name="MainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ViewsCount" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BlogPosts" Relationship="Self.FK_BlogPosts_Recipes" FromRole="Recipes" ToRole="BlogPosts" />
+          <NavigationProperty Name="CollectionRecipe" Relationship="Self.FK_CollectionRecipe_Recipes" FromRole="Recipes" ToRole="CollectionRecipe" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Recipes" FromRole="Recipes" ToRole="Comments" />
+          <NavigationProperty Name="Difficulties" Relationship="Self.FK_Recipes_Difficulties" FromRole="Recipes" ToRole="Difficulties" />
+          <NavigationProperty Name="Favorites" Relationship="Self.FK_Favorites_Recipes" FromRole="Recipes" ToRole="Favorites" />
+          <NavigationProperty Name="IngRec" Relationship="Self.FK_IngRec_Recipes" FromRole="Recipes" ToRole="IngRec" />
+          <NavigationProperty Name="Likes" Relationship="Self.FK_Likes_Recipes" FromRole="Recipes" ToRole="Likes" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Recipes_Users" FromRole="Recipes" ToRole="Users" />
+          <NavigationProperty Name="RecipeTags" Relationship="Self.FK_RecipeTags_Recipes" FromRole="Recipes" ToRole="RecipeTags" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Recipes" FromRole="Recipes" ToRole="Reports" />
         </EntityType>
         <EntityType Name="RecipeTags">
           <Key>
@@ -970,9 +987,9 @@
           <Property Name="TypeID" Type="Int32" />
           <NavigationProperty Name="BlogPosts" Relationship="Self.FK_RecipeTags_BlogPosts" FromRole="RecipeTags" ToRole="BlogPosts" />
           <NavigationProperty Name="Collections" Relationship="Self.FK_RecipeTags_Collections" FromRole="RecipeTags" ToRole="Collections" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_RecipeTags_Recipes" FromRole="RecipeTags" ToRole="Recipes" />
           <NavigationProperty Name="Tags" Relationship="Self.FK_RecipeTags_Tags" FromRole="RecipeTags" ToRole="Tags" />
           <NavigationProperty Name="Types" Relationship="Self.FK_RecipeTags_Types" FromRole="RecipeTags" ToRole="Types" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_RecipeTags_Recipes" FromRole="RecipeTags" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -991,10 +1008,10 @@
           <NavigationProperty Name="BlogPosts" Relationship="Self.FK_Reports_BlogPosts" FromRole="Reports" ToRole="BlogPosts" />
           <NavigationProperty Name="Collections" Relationship="Self.FK_Reports_Collections" FromRole="Reports" ToRole="Collections" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Reports_Comments" FromRole="Reports" ToRole="Comments" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Reports_Recipes" FromRole="Reports" ToRole="Recipes" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Reports_Status" FromRole="Reports" ToRole="Status" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Reports_Users" FromRole="Reports" ToRole="Users" />
           <NavigationProperty Name="Users1" Relationship="Self.FK_Reports_Users1" FromRole="Reports" ToRole="Users" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_Reports_Recipes" FromRole="Reports" ToRole="Recipes" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -1011,16 +1028,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Status" FromRole="Status" ToRole="Reports" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
@@ -1057,11 +1064,23 @@
           <NavigationProperty Name="Follows" Relationship="Self.FK_Follows_Users" FromRole="Users" ToRole="Follows" />
           <NavigationProperty Name="Follows1" Relationship="Self.FK_Follows_Users1" FromRole="Users" ToRole="Follows" />
           <NavigationProperty Name="Likes" Relationship="Self.FK_Likes_Users" FromRole="Users" ToRole="Likes" />
+          <NavigationProperty Name="Recipes" Relationship="Self.FK_Recipes_Users" FromRole="Users" ToRole="Recipes" />
           <NavigationProperty Name="Reports" Relationship="Self.FK_Reports_Users" FromRole="Users" ToRole="Reports" />
           <NavigationProperty Name="Reports1" Relationship="Self.FK_Reports_Users1" FromRole="Users" ToRole="Reports" />
           <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
-          <NavigationProperty Name="Recipes" Relationship="LHCModel.FK_Recipes_Users" FromRole="Users" ToRole="Recipes" />
         </EntityType>
+        <Association Name="FK_BlogPosts_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="0..1" />
+          <End Role="BlogPosts" Type="Self.BlogPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BlogPosts">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BlogPosts_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="BlogPosts" Type="Self.BlogPosts" Multiplicity="*" />
@@ -1146,6 +1165,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CollectionRecipe_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="CollectionRecipe" Type="Self.CollectionRecipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CollectionRecipe">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Collections_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Collections" Type="Self.Collections" Multiplicity="*" />
@@ -1218,6 +1249,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Comments_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comments_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
@@ -1251,6 +1294,30 @@
             </Principal>
             <Dependent Role="Reports">
               <PropertyRef Name="CommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipes_Difficulties">
+          <End Role="Difficulties" Type="Self.Difficulties" Multiplicity="1" />
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Difficulties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Recipes">
+              <PropertyRef Name="DifficultyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorites_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Favorites">
+              <PropertyRef Name="RecipeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1302,6 +1369,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IngRec_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="1" />
+          <End Role="IngRec" Type="Self.IngRec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="IngRec">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Likes_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="0..1" />
+          <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Likes">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Likes_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
@@ -1311,6 +1402,42 @@
             </Principal>
             <Dependent Role="Likes">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recipes_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Recipes">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeTags_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="0..1" />
+          <End Role="RecipeTags" Type="Self.RecipeTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RecipeTags">
+              <PropertyRef Name="RecipeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reports_Recipes">
+          <End Role="Recipes" Type="Self.Recipes" Multiplicity="0..1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recipes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="RecipeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1386,7 +1513,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LHCEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LHCEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BlogPosts" EntityType="Self.BlogPosts" />
           <EntitySet Name="CollectionRecipe" EntityType="Self.CollectionRecipe" />
           <EntitySet Name="Collections" EntityType="Self.Collections" />
@@ -1397,14 +1524,18 @@
           <EntitySet Name="IngRec" EntityType="Self.IngRec" />
           <EntitySet Name="Ingridients" EntityType="Self.Ingridients" />
           <EntitySet Name="Likes" EntityType="Self.Likes" />
+          <EntitySet Name="Recipes" EntityType="Self.Recipes" />
           <EntitySet Name="RecipeTags" EntityType="Self.RecipeTags" />
           <EntitySet Name="Reports" EntityType="Self.Reports" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Status" EntityType="Self.Status" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tags" EntityType="Self.Tags" />
           <EntitySet Name="Types" EntityType="Self.Types" />
           <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_BlogPosts_Recipes" Association="Self.FK_BlogPosts_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="BlogPosts" EntitySet="BlogPosts" />
+          </AssociationSet>
           <AssociationSet Name="FK_BlogPosts_Users" Association="Self.FK_BlogPosts_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="BlogPosts" EntitySet="BlogPosts" />
@@ -1433,6 +1564,10 @@
             <End Role="Collections" EntitySet="Collections" />
             <End Role="CollectionRecipe" EntitySet="CollectionRecipe" />
           </AssociationSet>
+          <AssociationSet Name="FK_CollectionRecipe_Recipes" Association="Self.FK_CollectionRecipe_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="CollectionRecipe" EntitySet="CollectionRecipe" />
+          </AssociationSet>
           <AssociationSet Name="FK_Collections_Users" Association="Self.FK_Collections_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Collections" EntitySet="Collections" />
@@ -1457,6 +1592,10 @@
             <End Role="Comments" EntitySet="Comments" />
             <End Role="Comments1" EntitySet="Comments" />
           </AssociationSet>
+          <AssociationSet Name="FK_Comments_Recipes" Association="Self.FK_Comments_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
           <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Comments" EntitySet="Comments" />
@@ -1468,6 +1607,14 @@
           <AssociationSet Name="FK_Reports_Comments" Association="Self.FK_Reports_Comments">
             <End Role="Comments" EntitySet="Comments" />
             <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipes_Difficulties" Association="Self.FK_Recipes_Difficulties">
+            <End Role="Difficulties" EntitySet="Difficulties" />
+            <End Role="Recipes" EntitySet="Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorites_Recipes" Association="Self.FK_Favorites_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Favorites" EntitySet="Favorites" />
           </AssociationSet>
           <AssociationSet Name="FK_Favorites_Users" Association="Self.FK_Favorites_Users">
             <End Role="Users" EntitySet="Users" />
@@ -1485,9 +1632,29 @@
             <End Role="Ingridients" EntitySet="Ingridients" />
             <End Role="IngRec" EntitySet="IngRec" />
           </AssociationSet>
+          <AssociationSet Name="FK_IngRec_Recipes" Association="Self.FK_IngRec_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="IngRec" EntitySet="IngRec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Likes_Recipes" Association="Self.FK_Likes_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Likes" EntitySet="Likes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Likes_Users" Association="Self.FK_Likes_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Likes" EntitySet="Likes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recipes_Users" Association="Self.FK_Recipes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recipes" EntitySet="Recipes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeTags_Recipes" Association="Self.FK_RecipeTags_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="RecipeTags" EntitySet="RecipeTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reports_Recipes" Association="Self.FK_Reports_Recipes">
+            <End Role="Recipes" EntitySet="Recipes" />
+            <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
           <AssociationSet Name="FK_RecipeTags_Tags" Association="Self.FK_RecipeTags_Tags">
             <End Role="Tags" EntitySet="Tags" />
@@ -1513,202 +1680,13 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="Recipes" EntityType="LHCModel.Recipes" />
-          <AssociationSet Name="FK_BlogPosts_Recipes" Association="LHCModel.FK_BlogPosts_Recipes">
-            <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="BlogPosts" EntitySet="BlogPosts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CollectionRecipe_Recipes" Association="LHCModel.FK_CollectionRecipe_Recipes">
-            <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="CollectionRecipe" EntitySet="CollectionRecipe" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comments_Recipes" Association="LHCModel.FK_Comments_Recipes">
-            <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Recipes_Difficulties" Association="LHCModel.FK_Recipes_Difficulties">
-            <End Role="Difficulties" EntitySet="Difficulties" />
-            <End Role="Recipes" EntitySet="Recipes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Favorites_Recipes" Association="LHCModel.FK_Favorites_Recipes">
-            <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="Favorites" EntitySet="Favorites" />
-          </AssociationSet>
-          <AssociationSet Name="FK_IngRec_Recipes" Association="LHCModel.FK_IngRec_Recipes">
-            <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="IngRec" EntitySet="IngRec" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Likes_Recipes" Association="LHCModel.FK_Likes_Recipes">
-            <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="Likes" EntitySet="Likes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Recipes_Users" Association="LHCModel.FK_Recipes_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Recipes" EntitySet="Recipes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RecipeTags_Recipes" Association="LHCModel.FK_RecipeTags_Recipes">
-            <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="RecipeTags" EntitySet="RecipeTags" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reports_Recipes" Association="LHCModel.FK_Reports_Recipes">
-            <End Role="Recipes" EntitySet="Recipes" />
-            <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Recipes">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AuthorID" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Instruction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CookingTime" Type="Int32" />
-          <Property Name="Servings" Type="Int32" />
-          <Property Name="Rating" Type="Double" />
-          <Property Name="DifficultyID" Type="Int32" Nullable="false" />
-          <Property Name="MainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ViewsCount" Type="Int32" />
-          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="BlogPosts" Relationship="LHCModel.FK_BlogPosts_Recipes" FromRole="Recipes" ToRole="BlogPosts" />
-          <NavigationProperty Name="CollectionRecipe" Relationship="LHCModel.FK_CollectionRecipe_Recipes" FromRole="Recipes" ToRole="CollectionRecipe" />
-          <NavigationProperty Name="Comments" Relationship="LHCModel.FK_Comments_Recipes" FromRole="Recipes" ToRole="Comments" />
-          <NavigationProperty Name="Difficulties" Relationship="LHCModel.FK_Recipes_Difficulties" FromRole="Recipes" ToRole="Difficulties" />
-          <NavigationProperty Name="Favorites" Relationship="LHCModel.FK_Favorites_Recipes" FromRole="Recipes" ToRole="Favorites" />
-          <NavigationProperty Name="IngRec" Relationship="LHCModel.FK_IngRec_Recipes" FromRole="Recipes" ToRole="IngRec" />
-          <NavigationProperty Name="Likes" Relationship="LHCModel.FK_Likes_Recipes" FromRole="Recipes" ToRole="Likes" />
-          <NavigationProperty Name="Users" Relationship="LHCModel.FK_Recipes_Users" FromRole="Recipes" ToRole="Users" />
-          <NavigationProperty Name="RecipeTags" Relationship="LHCModel.FK_RecipeTags_Recipes" FromRole="Recipes" ToRole="RecipeTags" />
-          <NavigationProperty Name="Reports" Relationship="LHCModel.FK_Reports_Recipes" FromRole="Recipes" ToRole="Reports" />
-        </EntityType>
-        <Association Name="FK_BlogPosts_Recipes">
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="0..1" />
-          <End Type="LHCModel.BlogPosts" Role="BlogPosts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="BlogPosts">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CollectionRecipe_Recipes">
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="1" />
-          <End Type="LHCModel.CollectionRecipe" Role="CollectionRecipe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CollectionRecipe">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comments_Recipes">
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="0..1" />
-          <End Type="LHCModel.Comments" Role="Comments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Comments">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Recipes_Difficulties">
-          <End Type="LHCModel.Difficulties" Role="Difficulties" Multiplicity="1" />
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Difficulties">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Recipes">
-              <PropertyRef Name="DifficultyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Favorites_Recipes">
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="1" />
-          <End Type="LHCModel.Favorites" Role="Favorites" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Favorites">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_IngRec_Recipes">
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="1" />
-          <End Type="LHCModel.IngRec" Role="IngRec" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="IngRec">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Likes_Recipes">
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="0..1" />
-          <End Type="LHCModel.Likes" Role="Likes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Likes">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Recipes_Users">
-          <End Type="LHCModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Recipes">
-              <PropertyRef Name="AuthorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RecipeTags_Recipes">
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="0..1" />
-          <End Type="LHCModel.RecipeTags" Role="RecipeTags" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RecipeTags">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reports_Recipes">
-          <End Type="LHCModel.Recipes" Role="Recipes" Multiplicity="0..1" />
-          <End Type="LHCModel.Reports" Role="Reports" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipes">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Reports">
-              <PropertyRef Name="RecipeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище LHCModelContainer" CdmEntityContainer="LHCEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LHCModelContainer" CdmEntityContainer="LHCEntities2">
           <EntitySetMapping Name="BlogPosts">
             <EntityTypeMapping TypeName="LHCModel.BlogPosts">
               <MappingFragment StoreEntitySet="BlogPosts">
@@ -1821,6 +1799,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Recipes">
+            <EntityTypeMapping TypeName="LHCModel.Recipes">
+              <MappingFragment StoreEntitySet="Recipes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Instruction" ColumnName="Instruction" />
+                <ScalarProperty Name="CookingTime" ColumnName="CookingTime" />
+                <ScalarProperty Name="Servings" ColumnName="Servings" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="DifficultyID" ColumnName="DifficultyID" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="ViewsCount" ColumnName="ViewsCount" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="RecipeTags">
             <EntityTypeMapping TypeName="LHCModel.RecipeTags">
               <MappingFragment StoreEntitySet="RecipeTags">
@@ -1865,17 +1862,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="LHCModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tags">
             <EntityTypeMapping TypeName="LHCModel.Tags">
               <MappingFragment StoreEntitySet="Tags">
@@ -1903,25 +1889,6 @@
                 <ScalarProperty Name="Bio" ColumnName="Bio" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Recipes">
-            <EntityTypeMapping TypeName="LHCModel.Recipes">
-              <MappingFragment StoreEntitySet="Recipes">
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="ViewsCount" ColumnName="ViewsCount" />
-                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
-                <ScalarProperty Name="DifficultyID" ColumnName="DifficultyID" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Servings" ColumnName="Servings" />
-                <ScalarProperty Name="CookingTime" ColumnName="CookingTime" />
-                <ScalarProperty Name="Instruction" ColumnName="Instruction" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -42,6 +42,54 @@
                 <Button x:Name="ChangeAvatarBTN" Content="Смена аватара" Click="ChangeAvatarBTN_Click"/>
                 <Button x:Name="RedactBioBTN" Content="Смена Био" Click="RedactBioBTN_Click"/>
             </StackPanel>
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="1">
+                <Button x:Name="LeaveBTN" Content="Выйти из аккаунта" Click="LeaveBTN_Click"/>
+                <Button x:Name="DelBTN" Content="Удалить" Click="DelBTN_Click" Margin="10" IsEnabled="False"/>
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Ваши рецепты" HorizontalAlignment="Center" FontSize="20" Grid.Row="0"></Label>
+            <ListBox x:Name="HistoryList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}"
+                     SelectionChanged="HistoryList_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding MainImage}" 
+                               Height="90" 
+                               Stretch="UniformToFill"
+                               Margin="0,0,0,6"/>
+
+
+                            <TextBlock Text="{Binding Title}" 
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"
+                                   MaxHeight="40"
+                                   TextTrimming="CharacterEllipsis"/>
+                            
+                            <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                <TextBlock Text="{Binding Rating, StringFormat= Оценка: {0}}" 
+                                       FontSize="12"/>
+                                <TextBlock Text="{Binding CookingTime, StringFormat= Время: {0}}" 
+                                       FontSize="12"
+                                       Foreground="Gray"
+                                       Margin="6,0,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
         </Grid>
     </Grid>
 </Page>

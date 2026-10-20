@@ -93,6 +93,7 @@
     <Compile Include="Ingridients.cs">
       <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Judgment.cs" />
     <Compile Include="lhc.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -110,6 +111,12 @@
     </Compile>
     <Compile Include="Likes.cs">
       <DependentUpon>lhc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InstructionPage.xaml.cs">
+      <DependentUpon>InstructionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ModerationPage.xaml.cs">
+      <DependentUpon>ModerationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PassChangePage.xaml.cs">
       <DependentUpon>PassChangePage.xaml</DependentUpon>
@@ -136,9 +143,6 @@
     <Compile Include="Status.cs">
       <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>lhc.tt</DependentUpon>
-    </Compile>
     <Compile Include="Tags.cs">
       <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
@@ -148,6 +152,14 @@
     <Compile Include="Users.cs">
       <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
+    <Page Include="Pages\InstructionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ModerationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PassChangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -243,9 +255,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="res\account.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -292,6 +302,8 @@
       <DependentUpon>lhc.edmx</DependentUpon>
       <LastGenOutput>lhc.cs</LastGenOutput>
     </Content>
+    <Resource Include="res\admin.png" />
+    <Resource Include="res\Dark-admin.png" />
     <Resource Include="res\monke.jpg" />
     <Resource Include="res\RepFlag.png" />
     <Resource Include="RecipesImages\OnionPancakes.jpg" />

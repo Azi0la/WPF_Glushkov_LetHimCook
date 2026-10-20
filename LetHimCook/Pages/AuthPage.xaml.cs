@@ -51,6 +51,14 @@ namespace LetHimCook.Pages
             {
                 Core.user = users.FirstOrDefault(p => p.Name == login && p.Password == pass);
                 MessageBox.Show("Вход выполнен!");
+                if (Core.user.RoleID == 2) 
+                {
+                    //var mainWindow = Window.GetWindow(this) as MainWindow;
+                    //if (mainWindow != null)
+                    //{
+                    //    mainWindow.ModButt.Visibility = Visibility.Visible;
+                    //}
+                }
                 NavigationService.Navigate(new MainPage());
                 FailAttempts = 0;
             }

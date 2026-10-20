@@ -8,7 +8,7 @@ namespace LetHimCook
 {
     internal class Core
     {
-        public static LHCEntities1 Context = new LHCEntities1();
+        public static LHCEntities2 Context = new LHCEntities2();
         public static Users user;
     }
 }

@@ -13,10 +13,10 @@ namespace LetHimCook
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LHCEntities1 : DbContext
+    public partial class LHCEntities2 : DbContext
     {
-        public LHCEntities1()
-            : base("name=LHCEntities1")
+        public LHCEntities2()
+            : base("name=LHCEntities2")
         {
         }
     
@@ -35,14 +35,13 @@ namespace LetHimCook
         public DbSet<IngRec> IngRec { get; set; }
         public DbSet<Ingridients> Ingridients { get; set; }
         public DbSet<Likes> Likes { get; set; }
+        public DbSet<Recipes> Recipes { get; set; }
         public DbSet<RecipeTags> RecipeTags { get; set; }
         public DbSet<Reports> Reports { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<Status> Status { get; set; }
-        public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Tags> Tags { get; set; }
         public DbSet<Types> Types { get; set; }
         public DbSet<Users> Users { get; set; }
-        public DbSet<Recipes> Recipes { get; set; }
     }
 }

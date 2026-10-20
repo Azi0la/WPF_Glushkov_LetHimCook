@@ -26,11 +26,12 @@ namespace LetHimCook.Pages
 
         private List<Tags> tags = Core.Context.Tags.ToList();
         private List<Tags> selectedTags = new List<Tags>();
-
+        
         public MainPage()
         {
             InitializeComponent();
             List<String> sorting = new List<String> { "По Названию", "По Оценке" };
+            RecipeList.ItemsSource = null;
             RecipeList.ItemsSource = recipes;
             FilterBox.ItemsSource = sorting;
             TagList.ItemsSource = tags;

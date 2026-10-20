@@ -49,8 +49,10 @@
                 <Button x:Name="BackBTN" Content="Назад" Click="BackBTN_Click" />
             </StackPanel>
             <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                <Button x:Name="RecipeComplBTN" Content="Жалоба на рецепт" Click="RecipeComplBTN_Click"/>
-                <Button x:Name="AuthComplBTN" Content="Жалоба на автора" Click="AuthComplBTN_Click"/>
+                <Button x:Name="RecipeDelBTN" Content="Удалить рецепт" Click="RecipeDelBTN_Click" Visibility="Collapsed"/>
+                <Button x:Name="AuthDelBTN" Content="Забанить автора" Click="AuthDelBTN_Click" Visibility="Collapsed"/>
+                <Button x:Name="RecipeComplBTN" Content="Жалоба на рецепт" Click="RecipeComplBTN_Click" Visibility="Visible"/>
+                <Button x:Name="AuthComplBTN" Content="Жалоба на автора" Click="AuthComplBTN_Click" Visibility="Visible"/>
             </StackPanel>
         </Grid>
 
