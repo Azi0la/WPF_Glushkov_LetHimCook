@@ -30,7 +30,7 @@ SQL-скрипт содержит иконки формата png, а также
 
 ## Структура
 ---
-
+```
 LetHimCook/
 ├─ Pages/
 │ ├─ AuthPage.xaml
@@ -52,3 +52,4 @@ LetHimCook/
 ├─ MainWindow.xaml
 ├─ MainWindow.xaml.cs
 └─ README.md
+```
