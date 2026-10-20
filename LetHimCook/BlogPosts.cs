@@ -33,11 +33,11 @@ namespace LetHimCook
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     
-        public virtual Recipes Recipes { get; set; }
         public virtual Users Users { get; set; }
         public virtual ICollection<Comments> Comments { get; set; }
         public virtual ICollection<Likes> Likes { get; set; }
         public virtual ICollection<RecipeTags> RecipeTags { get; set; }
         public virtual ICollection<Reports> Reports { get; set; }
+        public virtual Recipes Recipes { get; set; }
     }
 }

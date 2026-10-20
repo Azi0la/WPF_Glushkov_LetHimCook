@@ -10,7 +10,66 @@
       Background="{DynamicResource WindowBackgroundBrush}">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1.5*"/>
 
-       
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
+            <Label Content="Поиск: " VerticalAlignment="Center" FontSize="25"/>
+            <TextBox x:Name="SearchBar" Height="30" Width="400" TextChanged="SearchBar_TextChanged"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="2">
+            <Label Content="Сортировка:" HorizontalAlignment="Center" FontSize="15"/>
+            <ComboBox x:Name="FilterBox" Grid.Row="0" Grid.Column="0" Margin="15" SelectionChanged="FilterBox_SelectionChanged"/>
+        </StackPanel>
+
+        <ListBox Grid.Row="1" Grid.Column="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 x:Name="TagList" Height="375" 
+                 VerticalAlignment="Top" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Name}"  
+                              Tag="{Binding ID}" 
+                              Click="TagBox_Click"  x:Name="TagBox" 
+                              Checked="TagBox_Checked"  Unchecked="TagBox_Unchecked"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="RecipeList"
+                 MouseDoubleClick="RecipeList_MouseDoubleClick"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Source="{Binding MainImage}" Width="150" Height="100"/>
+                        <TextBlock Text="{Binding Title}"/>
+                        <TextBlock Text="{Binding Users.Name, StringFormat=Автор: {0}}"/>
+                        <TextBlock Text="{Binding Rating, StringFormat=Рейтинг: {0}}"/>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="Оценка: {0}({1})">
+                                    <Binding Path="Rating"/>
+                                    <Binding Path="ReviewCount"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Stretch">
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
     </Grid>
 </Page>

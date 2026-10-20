@@ -23,9 +23,9 @@ namespace LetHimCook
             this.Follows = new HashSet<Follows>();
             this.Follows1 = new HashSet<Follows>();
             this.Likes = new HashSet<Likes>();
-            this.Recipes = new HashSet<Recipes>();
             this.Reports = new HashSet<Reports>();
             this.Reports1 = new HashSet<Reports>();
+            this.Recipes = new HashSet<Recipes>();
         }
     
         public int ID { get; set; }
@@ -44,9 +44,9 @@ namespace LetHimCook
         public virtual ICollection<Follows> Follows { get; set; }
         public virtual ICollection<Follows> Follows1 { get; set; }
         public virtual ICollection<Likes> Likes { get; set; }
-        public virtual ICollection<Recipes> Recipes { get; set; }
         public virtual ICollection<Reports> Reports { get; set; }
         public virtual ICollection<Reports> Reports1 { get; set; }
         public virtual Roles Roles { get; set; }
+        public virtual ICollection<Recipes> Recipes { get; set; }
     }
 }

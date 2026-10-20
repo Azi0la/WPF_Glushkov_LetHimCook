@@ -28,9 +28,9 @@ namespace LetHimCook
         public virtual BlogPosts BlogPosts { get; set; }
         public virtual Collections Collections { get; set; }
         public virtual Comments Comments { get; set; }
-        public virtual Recipes Recipes { get; set; }
         public virtual Status Status { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
+        public virtual Recipes Recipes { get; set; }
     }
 }

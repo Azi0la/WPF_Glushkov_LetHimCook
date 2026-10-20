@@ -20,9 +20,27 @@ namespace LetHimCook.Pages
     /// </summary>
     public partial class UserPage : Page
     {
-        public UserPage()
+        Users user;
+        public UserPage(Users _user)
         {
             InitializeComponent();
+            user = _user;
+            DataContext = user;
+        }
+
+        private void ChangePassBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PassChangePage());
+        }
+
+        private void ChangeAvatarBTN_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RedactBioBTN_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

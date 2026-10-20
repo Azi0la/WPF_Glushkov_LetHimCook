@@ -88,7 +88,7 @@ namespace LetHimCook
                                 break;
                             case "3":
                                 if(Core.user == null) MainFrame.Navigate(new Pages.AuthPage());
-                                else MainFrame.Navigate(new Pages.UserPage());
+                                else MainFrame.Navigate(new Pages.UserPage(Core.user));
                                 break;
                         }
 

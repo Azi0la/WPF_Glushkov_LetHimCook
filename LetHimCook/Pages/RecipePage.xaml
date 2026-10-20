@@ -1,0 +1,85 @@
+﻿<Page x:Class="LetHimCook.Pages.RecipePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LetHimCook.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RecipePage"
+      Background="{DynamicResource WindowBackgroundBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Source="{Binding MainImage}" Width="150" Height="100" 
+               Margin="10" Grid.Row="0"
+               HorizontalAlignment="Left"/>
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="{Binding Title}" FontSize="16"/>
+                    <TextBlock Text="{Binding Users.Name, StringFormat=Автор: {0}}" FontSize="16"/>
+                    <TextBlock Text="{Binding Description, StringFormat=Описание: {0}}" FontSize="14" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="TagTB" FontSize="14" TextWrapping="Wrap"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Rating, StringFormat=Оценка: {0}}" FontSize="14"/>
+                        <TextBlock x:Name="CountTB" FontSize="15" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <Button x:Name="ReadBTN" Content="Читать"  Click="ReadBTN_Click"/>
+                <Button x:Name="ReviewBTN" Content="Написать отзыв" Click="ReviewBTN_Click"/>
+                <Button x:Name="BackBTN" Content="Назад" Click="BackBTN_Click" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <Button x:Name="RecipeComplBTN" Content="Жалоба на рецепт" Click="RecipeComplBTN_Click"/>
+                <Button x:Name="AuthComplBTN" Content="Жалоба на автора" Click="AuthComplBTN_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Отзывы" HorizontalAlignment="Center" FontSize="20" Grid.Row="0"></Label>
+            <ListBox x:Name="ReviewList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Users.Name}"/>
+                            <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Margin="0,0,0,25"/>
+                            <Button x:Name="CommentComplBTN" Width="25" Height="25" Background="Transparent" Click="CommentComplBTN_Click" >
+                                <Image x:Name="RepImage" Source="/res/RepFlag.png"/>
+                            </Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Stretch" Orientation="Vertical">
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Page>

@@ -111,6 +111,12 @@
     <Compile Include="Likes.cs">
       <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PassChangePage.xaml.cs">
+      <DependentUpon>PassChangePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecipePage.xaml.cs">
+      <DependentUpon>RecipePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RegPage.xaml.cs">
       <DependentUpon>RegPage.xaml</DependentUpon>
     </Compile>
@@ -142,6 +148,14 @@
     <Compile Include="Users.cs">
       <DependentUpon>lhc.tt</DependentUpon>
     </Compile>
+    <Page Include="Pages\PassChangePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecipePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\RegPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,9 +243,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RecipesMD\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="res\account.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -280,6 +292,9 @@
       <DependentUpon>lhc.edmx</DependentUpon>
       <LastGenOutput>lhc.cs</LastGenOutput>
     </Content>
+    <Resource Include="res\monke.jpg" />
+    <Resource Include="res\RepFlag.png" />
+    <Resource Include="RecipesImages\OnionPancakes.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

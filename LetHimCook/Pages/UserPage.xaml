@@ -10,6 +10,38 @@
       Background="{DynamicResource WindowBackgroundBrush}">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="1" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding AvatarUrl}" Width="100" Height="100" 
+            Margin="10" Grid.Column="0"
+            HorizontalAlignment="Left"/>
+                <StackPanel VerticalAlignment="Top" Grid.Column="1">
+                    <TextBlock Text="{Binding Name, StringFormat=Имя: {0}}" Margin="0,20,0,0" FontSize="20"/>
+                    <TextBlock Text="{Binding Email, StringFormat=Почта: {0}}" Margin="0,5,0,0" FontSize="20"/>
+                    <TextBlock Text="{Binding Roles.Name, StringFormat=Роль: {0}}" Margin="0,5,0,0" FontSize="20"/>
+                    <TextBlock Text="{Binding Bio, StringFormat=Био: {0}}" Margin="0,5,0,0" FontSize="20"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <Button x:Name="ChangePassBTN" Content="Смена пароля"  Click="ChangePassBTN_Click"/>
+                <Button x:Name="ChangeAvatarBTN" Content="Смена аватара" Click="ChangeAvatarBTN_Click"/>
+                <Button x:Name="RedactBioBTN" Content="Смена Био" Click="RedactBioBTN_Click"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

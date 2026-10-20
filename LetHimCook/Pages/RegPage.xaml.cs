@@ -67,7 +67,7 @@ namespace LetHimCook.Pages
                     Name = Name,
                     Email = Email,
                     Password = Pass,
-                    AvatarUrl = null,
+                    AvatarUrl = "monke.jpg",
                     Bio = "",
                     RoleID = 1,
                     CreatedAt = DateTime.Now

@@ -9,7 +9,123 @@
       Title="CreatePage"
       Background="{DynamicResource WindowBackgroundBrush}">
 
-    <Grid>
-        
+    <Grid RenderTransformOrigin="0.513,0.5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="9*"/>
+                </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            
+                <TextBlock Grid.Row="0" 
+                       Text="Добавить новый рецепт" 
+                       FontSize="28" 
+                       Margin="0,0,0,10"
+                           HorizontalAlignment="Center"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackPanel Grid.Column="0">
+
+                        <TextBlock Text="Название рецепта" Margin="0,0,0,5"/>
+                        <TextBox x:Name="TitleTB" 
+                             MaxLength="50"
+                             Height="30"
+                             Margin="0,0,0,10"/>
+
+
+                        <TextBlock Text="Краткое описание" Margin="0,0,0,5"/>
+                        <TextBox x:Name="DescriptionTB" 
+                             MaxLength="255"
+                             Height="40"
+                             TextWrapping="Wrap"
+                             Margin="0,0,0,15"/>
+
+                        <TextBlock Text="Сложность" Margin="0,0,0,5"/>
+                        <ComboBox x:Name="DifficultyComboBox" 
+                              Height="35"
+                              Margin="0,0,0,15">
+                            <ComboBoxItem Content="Очень Легко" Tag="1"/>
+                            <ComboBoxItem Content="Легко" Tag="2"/>
+                            <ComboBoxItem Content="Средне" Tag="3"/>
+                            <ComboBoxItem Content="Тяжело" Tag="4"/>
+                            <ComboBoxItem Content="Очень тяжело" Tag="5"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Инструкция приготовления" Margin="0,0,0,5"/>
+                        <TextBox x:Name="InstructionTB" 
+                             Height="100"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                             Margin="0,0,0,15"/>
+
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Время приготовления (мин)" Margin="0,0,0,5"/>
+                            <TextBox x:Name="CookingTimeTextBox" 
+                             Height="25"
+                             Padding="8,5"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Количество порций" Margin="0,0,0,5"/>
+                            <TextBox x:Name="ServingsTextBox" 
+                                     Height="25"
+                                     Padding="8,5"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Фото рецепта" Margin="0,0,0,10"/>
+                        <Border 
+                            Background="#F8F8F8"
+                            Height="100"
+                            Width="150"
+                            Margin="0,0,0,15">
+                            <Image x:Name="PreviewImage" 
+                               Stretch="Uniform"
+                               Margin="10"/>
+                        </Border>
+
+                        <Button Content="Выбрать фото" 
+                            Click="SelectImage_Click"
+                            Height="40"
+                            Margin="0,0,0,10"/>
+
+                        <TextBlock x:Name="ImageInfoText" 
+                               Text="Фото не выбрано"
+                               FontSize="12"
+                               Foreground="Gray"
+                               TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+                
+                <Button Content="Сохранить рецепт" 
+                    Click="SaveRecipe_Click"
+                    Width="180"
+                    Height="40" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,15,0"/>
+            </Grid>
+          </Grid>
     </Grid>
 </Page>

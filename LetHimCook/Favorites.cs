@@ -18,7 +18,7 @@ namespace LetHimCook
         public int UserID { get; set; }
         public int RecipeID { get; set; }
     
-        public virtual Recipes Recipes { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Recipes Recipes { get; set; }
     }
 }

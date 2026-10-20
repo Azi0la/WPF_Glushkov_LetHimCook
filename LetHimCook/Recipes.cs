@@ -30,6 +30,7 @@ namespace LetHimCook
         public int AuthorID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Instruction { get; set; }
         public Nullable<int> CookingTime { get; set; }
         public Nullable<int> Servings { get; set; }
         public Nullable<double> Rating { get; set; }

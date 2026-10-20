@@ -88,7 +88,7 @@
                             Click="CaptchaBTN_Click"/>
                 </StackPanel>
                 
-                <Button x:Name="AuthButt" Width="110" Height="40" Content="Войти" Margin="5" Click="AuthButt_Click" IsEnabled="True"/>
+                <Button x:Name="AuthButt" Width="110" Height="30" Content="Войти" Margin="5" Click="AuthButt_Click" IsEnabled="True"/>
                 <Button x:Name="ForgotButt" Width="115" Height="20" Content="Нет аккаунта?" Background="Transparent" Click="ForgotButt_Click"/>
             </StackPanel>
         </Border>

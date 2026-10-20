@@ -35,7 +35,6 @@ namespace LetHimCook
         public DbSet<IngRec> IngRec { get; set; }
         public DbSet<Ingridients> Ingridients { get; set; }
         public DbSet<Likes> Likes { get; set; }
-        public DbSet<Recipes> Recipes { get; set; }
         public DbSet<RecipeTags> RecipeTags { get; set; }
         public DbSet<Reports> Reports { get; set; }
         public DbSet<Roles> Roles { get; set; }
@@ -44,5 +43,6 @@ namespace LetHimCook
         public DbSet<Tags> Tags { get; set; }
         public DbSet<Types> Types { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<Recipes> Recipes { get; set; }
     }
 }

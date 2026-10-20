@@ -23,8 +23,8 @@ namespace LetHimCook
     
         public virtual BlogPosts BlogPosts { get; set; }
         public virtual Collections Collections { get; set; }
-        public virtual Recipes Recipes { get; set; }
         public virtual Tags Tags { get; set; }
         public virtual Types Types { get; set; }
+        public virtual Recipes Recipes { get; set; }
     }
 }

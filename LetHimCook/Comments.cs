@@ -35,9 +35,9 @@ namespace LetHimCook
         public virtual Collections Collections { get; set; }
         public virtual ICollection<Comments> Comments1 { get; set; }
         public virtual Comments Comments2 { get; set; }
-        public virtual Recipes Recipes { get; set; }
         public virtual Users Users { get; set; }
         public virtual ICollection<Likes> Likes { get; set; }
         public virtual ICollection<Reports> Reports { get; set; }
+        public virtual Recipes Recipes { get; set; }
     }
 }
