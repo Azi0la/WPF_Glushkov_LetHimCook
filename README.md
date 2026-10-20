@@ -35,7 +35,9 @@ LetHimCook/
 ├─ Pages/
 │ ├─ AuthPage.xaml
 │ ├─ CreatePage.xaml
+│ ├─ InstructionPage.xaml
 │ ├─ MainPage.xaml
+│ ├─ ModerationPage.xaml
 │ ├─ PassChange.xaml
 │ ├─ RecipePage.xaml
 │ ├─ RegPage.xaml
@@ -49,6 +51,7 @@ LetHimCook/
 ├─ RecipesImages/
 ├─ Core.cs
 ├─ PassMaker.cs
+├─ Judgment.cs
 ├─ MainWindow.xaml
 ├─ MainWindow.xaml.cs
 └─ README.md
