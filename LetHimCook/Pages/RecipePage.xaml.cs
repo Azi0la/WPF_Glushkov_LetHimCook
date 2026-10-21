@@ -103,11 +103,9 @@ namespace LetHimCook.Pages
         {
             try
             {
-                // Создаём приложение и документ Word
                 var application = new Word.Application();
                 Word.Document document = application.Documents.Add();
 
-                // ========== Заголовок (название рецепта) ==========
                 Word.Paragraph titleParagraph = document.Paragraphs.Add();
                 Word.Range titleRange = titleParagraph.Range;
                 titleRange.Text = recipe.Title;
@@ -116,9 +114,8 @@ namespace LetHimCook.Pages
                 titleRange.Font.Bold = 1;
                 titleRange.Font.Size = 18;
                 titleRange.InsertParagraphAfter();
-                document.Paragraphs.Add(); // пустая строка
+                document.Paragraphs.Add(); 
 
-                // ========== Автор ==========
                 Word.Paragraph authorParagraph = document.Paragraphs.Add();
                 Word.Range authorRange = authorParagraph.Range;
                 string authorName = users.FirstOrDefault(u => u.ID == recipe.AuthorID)?.Name ?? "Неизвестен";
@@ -128,7 +125,6 @@ namespace LetHimCook.Pages
                 authorRange.InsertParagraphAfter();
                 document.Paragraphs.Add();
 
-                // ========== Основная информация (таблица) ==========
                 Word.Paragraph infoParagraph = document.Paragraphs.Add();
                 Word.Range infoRange = infoParagraph.Range;
 
@@ -136,14 +132,12 @@ namespace LetHimCook.Pages
                 infoTable.Borders.InsideLineStyle = infoTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
                 infoTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
 
-                // Заголовки колонок
                 infoTable.Cell(1, 1).Range.Text = "Параметр";
                 infoTable.Cell(1, 2).Range.Text = "Значение";
                 infoTable.Rows[1].Range.Font.Bold = 1;
                 infoTable.Rows[1].Range.Font.Size = 12;
                 infoTable.Rows[1].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
 
-                // Данные
                 infoTable.Cell(2, 1).Range.Text = "Время приготовления";
                 infoTable.Cell(2, 2).Range.Text = $"{recipe.CookingTime} мин.";
 
@@ -156,24 +150,21 @@ namespace LetHimCook.Pages
                 infoTable.Cell(5, 1).Range.Text = "Количество просмотров";
                 infoTable.Cell(5, 2).Range.Text = recipe.ViewsCount.ToString();
 
-                // Шрифт для данных
                 for (int i = 2; i <= 5; i++)
                 {
                     infoTable.Cell(i, 1).Range.Font.Size = 11;
                     infoTable.Cell(i, 2).Range.Font.Size = 11;
                 }
 
-                document.Paragraphs.Add(); // пустая строка
+                document.Paragraphs.Add();
 
-                // ========== Теги ==========
                 Word.Paragraph tagsParagraph = document.Paragraphs.Add();
                 Word.Range tagsRange = tagsParagraph.Range;
-                tagsRange.Text = TagTB.Text; // уже сформированная строка "Тэги: ..."
+                tagsRange.Text = TagTB.Text;
                 tagsRange.Font.Size = 11;
                 tagsRange.InsertParagraphAfter();
                 document.Paragraphs.Add();
 
-                // ========== Описание ==========
                 Word.Paragraph descTitle = document.Paragraphs.Add();
                 Word.Range descTitleRange = descTitle.Range;
                 descTitleRange.Text = "Описание";
@@ -187,7 +178,7 @@ namespace LetHimCook.Pages
                 descRange.InsertParagraphAfter();
                 document.Paragraphs.Add();
 
-                // ========== Инструкция ==========
+
                 Word.Paragraph instrTitle = document.Paragraphs.Add();
                 Word.Range instrTitleRange = instrTitle.Range;
                 instrTitleRange.Text = "Инструкция по приготовлению";
@@ -201,7 +192,7 @@ namespace LetHimCook.Pages
                 instrRange.InsertParagraphAfter();
                 document.Paragraphs.Add();
 
-                // ========== Отзывы (если есть) ==========
+
                 var recipeComments = comments.Where(c => c.RecipeID == recipe.ID).ToList();
                 if (recipeComments.Any())
                 {
@@ -224,15 +215,12 @@ namespace LetHimCook.Pages
                     }
                 }
 
-                // ========== Колонтитулы (как в методичке) ==========
-                // Нижний колонтитул — номер страницы
                 foreach (Word.Section section in document.Sections)
                 {
                     Word.HeaderFooter footer = section.Footers[Word.WdHeaderFooterIndex.wdHeaderFooterPrimary];
                     footer.PageNumbers.Add(Word.WdPageNumberAlignment.wdAlignPageNumberCenter);
                 }
 
-                // Верхний колонтитул — дата
                 foreach (Word.Section section in document.Sections)
                 {
                     Word.Range headerRange = section.Headers[Word.WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
@@ -241,14 +229,11 @@ namespace LetHimCook.Pages
                     headerRange.Font.Size = 10;
                 }
 
-                // Сохраняем и показываем
                 string safeTitle = string.Join("_", recipe.Title.Split(System.IO.Path.GetInvalidFileNameChars()));
                 string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
                                           $"Recipe_{safeTitle}.docx");
 
                 document.SaveAs2(path);
-                // Можно также сохранить в PDF:
-                // document.SaveAs2(path.Replace(".docx", ".pdf"), Word.WdExportFormat.wdExportFormatPDF);
 
                 application.Visible = true;
 
