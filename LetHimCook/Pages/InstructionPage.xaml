@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:LetHimCook.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="InstructionPage">
+      Title="InstructionPage"
+      Background="{DynamicResource WindowBackgroundBrush}">
 
     <Grid>
         <Grid.ColumnDefinitions>

@@ -255,7 +255,35 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="res\account.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -302,6 +330,16 @@
       <DependentUpon>lhc.edmx</DependentUpon>
       <LastGenOutput>lhc.cs</LastGenOutput>
     </Content>
+    <Resource Include="RecipesImages\borcsht.jpg" />
+    <Resource Include="RecipesImages\brownie.jpg" />
+    <Resource Include="RecipesImages\okroshka.jpg" />
+    <Resource Include="RecipesImages\pelmeni.jpg" />
+    <Resource Include="RecipesImages\plov.jpg" />
+    <Resource Include="RecipesImages\ribeye.jpg" />
+    <Resource Include="RecipesImages\salmon.jpg" />
+    <Resource Include="RecipesImages\syrniki.jpg" />
+    <Resource Include="RecipesImages\tiramisu.jpg" />
+    <Resource Include="RecipesImages\vegan_caesar.jpg" />
     <Resource Include="res\admin.png" />
     <Resource Include="res\Dark-admin.png" />
     <Resource Include="res\monke.jpg" />
